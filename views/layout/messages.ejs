@@ -1,0 +1,36 @@
+
+<div class="errors">
+    <% if(typeof errors !== 'undefined') { %>
+        <% for(var statusCode in errors){ %>
+            <% for(var errorCode in errors[statusCode]){ %>
+                <div class="alert alert-danger alert-dismissable">
+                    <h4><b><%- errors[statusCode][errorCode].title %></h4></b></h4>
+                    <%- errors[statusCode][errorCode].details %>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+    <% if(typeof devError !== 'undefined') { %>
+        <% if(application.sandbox == 1){ %>
+            <% for(var devStatusCode in devError){ %>
+                <% for(var devErrorCode in devError[devStatusCode]){ %>
+                    <div class="alert alert-warning alert-dismissable">
+                        <h4><b><%- devError[devStatusCode][devErrorCode].title %></b></h4>
+                        <%- devError[devStatusCode][devErrorCode].details %>
+                    </div>
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
+    <% if(typeof success !== 'undefined'){ %>
+        <% for(var sucStatusCode in success){ %>
+            <% for(var sucCode in success[sucStatusCode]){ %>
+                <div class="alert alert-success alert-dismissable">
+                    <h4><b><%- success[sucStatusCode][sucCode].title %></b></h4>
+                    <%- success[sucStatusCode][sucCode].details %>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+</div>
+

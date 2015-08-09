@@ -32,8 +32,8 @@ var mysqlUpsertName = '';
 switch(_coreConfig.environment){
     case "development":
         mysqlSelectHost = 'localhost';
-        mysqlSelectUser = '';
-        mysqlSelectPass = '';
+        mysqlSelectUser = 'admin';
+        mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
         mysqlUpsertHost = 'localhost';
