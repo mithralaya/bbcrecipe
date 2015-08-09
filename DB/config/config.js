@@ -12,7 +12,7 @@
  */
 
 //Private variables and dependencies
-var _coreConfig = require('../../CoreConfig/config');
+var environment = "development";
 
 //RDBMS variables
 var mysqlSelectHost = '';
@@ -29,69 +29,68 @@ var mysqlUpsertName = '';
 //Time series DB variables
 
 //Decide which DB config to set according to environment set in CoreConfig
-switch(_coreConfig.environment){
+switch(environment){
     case "development":
-        mysqlSelectHost = 'localhost';
+        mysqlSelectHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
         mysqlSelectUser = 'admin';
         mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
-        mysqlUpsertHost = 'localhost';
-        mysqlUpsertUser = '';
-        mysqlUpsertPass = '';
+        mysqlUpsertHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlUpsertUser = 'admin';
+        mysqlUpsertPass = 'SuperKings12';
         mysqlUpsertName = 'bbcrecipe';
 
         break;
 
     case "beta":
-        mysqlSelectHost = 'localhost';
-        mysqlSelectUser = '';
-        mysqlSelectPass = '';
+        mysqlSelectHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlSelectUser = 'admin';
+        mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
-        mysqlUpsertHost = 'localhost';
-        mysqlUpsertUser = '';
-        mysqlUpsertPass = '';
+        mysqlUpsertHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlUpsertUser = 'admin';
+        mysqlUpsertPass = 'SuperKings12';
         mysqlUpsertName = 'bbcrecipe';
-
 
         break;
 
     case "staging":
-        mysqlSelectHost = 'localhost';
-        mysqlSelectUser = '';
-        mysqlSelectPass = '';
+        mysqlSelectHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlSelectUser = 'admin';
+        mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
-        mysqlUpsertHost = 'localhost';
-        mysqlUpsertUser = '';
-        mysqlUpsertPass = '';
+        mysqlUpsertHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlUpsertUser = 'admin';
+        mysqlUpsertPass = 'SuperKings12';
         mysqlUpsertName = 'bbcrecipe';
 
         break;
 
     case "production":
-        mysqlSelectHost = 'localhost';
-        mysqlSelectUser = '';
-        mysqlSelectPass = '';
+        mysqlSelectHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlSelectUser = 'admin';
+        mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
-        mysqlUpsertHost = 'localhost';
-        mysqlUpsertUser = '';
-        mysqlUpsertPass = '';
+        mysqlUpsertHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlUpsertUser = 'admin';
+        mysqlUpsertPass = 'SuperKings12';
         mysqlUpsertName = 'bbcrecipe';
 
         break;
 
     default:
-        mysqlSelectHost = 'localhost';
-        mysqlSelectUser = '';
-        mysqlSelectPass = '';
+        mysqlSelectHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlSelectUser = 'admin';
+        mysqlSelectPass = 'SuperKings12';
         mysqlSelectName = 'bbcrecipe';
 
-        mysqlUpsertHost = 'localhost';
-        mysqlUpsertUser = '';
-        mysqlUpsertPass = '';
+        mysqlUpsertHost = 'bbcrecipe.cgwi22ojphnb.eu-west-1.rds.amazonaws.com';
+        mysqlUpsertUser = 'admin';
+        mysqlUpsertPass = 'SuperKings12';
         mysqlUpsertName = 'bbcrecipe';
 
         break;

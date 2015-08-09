@@ -113,6 +113,18 @@ module.exports = {
                 "statusCode" : 400,
                 "title"      : "Account Not Found",
                 "details"    : 'No account found with the email address supplied. Would you like to <a href="/register">Register</a>?'
+            },
+            "noRecipe": {
+                "id"         : 17,
+                "statusCode" : 400,
+                "title"      : "No Recipe Found",
+                "details"    : 'Sorry, we currently have no recipes for you'
+            },
+            "noSuchRecipe": {
+                "id"         : 17,
+                "statusCode" : 400,
+                "title"      : "No Such Recipe Found",
+                "details"    : 'Sorry, this recipe doesn\'t exist or may have been removed'
             }
             
         },
@@ -293,20 +305,6 @@ module.exports = {
                 "statusCode": 400,
                 "title"     : "JSON Web Token Invalid or Not Found",
                 "details"   : "JSON web token is not supplied or found invalid. Please supply a valid HMAC-SHA256 encoded token. The correct format is base64encode(JWT_Header).base64encode(Payload).HMACSHA256(Part1_encodedString, 'shared_secret'). Please refer to <a href='http://jwt.io' target='_blank'>http://jwt.io</a> for more details."
-            }
-        },
-        "devWarning"    : {
-            "basketCompletedDeleted": {
-                "id"        : 601,
-                "statusCode": 403,
-                "title"     : "Baskets Already Complete",
-                "details"   : "Each of the following basket IDs have already been flagged as complete and thus no longer editable. The developer should ensure that they are flagged as complete on the client application and remove the abilty to edit it further. MoreInfo supplies a list of Shopwave Basket IDs which have been effected by this warning. ObjectRef supplies a list of the client app's IDs which have been affected by this warning."
-            },
-            "transactionCompleted": {
-                "id"        : 601,
-                "statusCode": 403,
-                "title"     : "Transaction Already Complete",
-                "details"   : "Each of the following transaction IDs have already been flagged as complete and thus no longer editable. The developer should ensure that they are flagged as complete on the client application and remove the abilty to edit it further. MoreInfo supplies a list of Shopwave Transaction IDs which have been effected by this warning. ObjectRef supplies a list of the client app's IDs which have been affected by this warning."
             }
         }
     }

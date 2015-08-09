@@ -1,0 +1,53 @@
+<% include layout/header.ejs  %>
+    <div class="container">
+
+        <% include layout/messages.ejs %>
+        <% if(recipeRows !== undefined && recipeRows.length > 0){ %>
+
+            <div class="row">
+                <nav>
+                    <ul class="pager">
+                        <li class="previous"><a href="/"><span aria-hidden="true">&larr;</span> Back</a></li>
+                    </ul>
+                </nav>
+                <h1><%- recipeRows[0].recipeName %> <a href="#" data-toggle="tooltip" data-placement="bottom" title="Star this recipe"><i class="ion-ios-star-outline"></i></a></h1>
+            </div><br/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="row">
+                        <% if(recipeRows[0].imageUrl !== null) { %>
+                            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                <img src="/images/<%- recipeRows[0].imageUrl %>" alt="<%- recipeRows[0].recipeName %>" class="img-rounded">
+                            </div>
+                        <% } %>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <p><%- recipeRows[0].description %></p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><br/>
+                            <p>By <b><%- recipeRows[0].userName %></b></p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><br/>
+                            <p>Cooking Time: <b><%- recipeRows[0].cookingTime %> mins</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="row">
+                    <h2>Ingredients</h2>
+                </div>
+                <div class="row">
+                    <ul>
+                        <% for(var recipeRowId in recipeRows){
+                                if(recipeRows.hasOwnProperty(recipeRowId)){
+                                %>
+                                <li><%- recipeRows[recipeRowId].quantity %> <%- recipeRows[recipeRowId].unit %> <%- recipeRows[recipeRowId].ingredientName %></li>
+                        <%      }
+                        } %>
+                    </ul>
+                </div>
+            </div>
+        <% } %>
+    </div>
+<% include layout/footer.ejs %>

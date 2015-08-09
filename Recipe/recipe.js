@@ -3,7 +3,7 @@
  */
 
 var RecipeModel = require("../DB/model/Recipe");
-var RecipeModel = require("../DB/model/Recipe");
+var RecipeExtendedModel = require("../DB/model/RecipeExtended");
 
 var Recipe  = function() {
 
@@ -12,28 +12,36 @@ var Recipe  = function() {
 
 Recipe.prototype = {
 
-    getAllRecipe: function(merchantId, employeeIds, callback, Message){
+    getAllRecipe: function(callback, Message){
+
+        var recipeModel = new RecipeExtendedModel();
+        recipeModel.model.getItems(callback, Message);
+
+    },
+
+    getPaginatedRecipeIds: function(pageNo, callback, Message)
+    {
+        var recipeModel = new RecipeModel(["id"], undefined, [], [], 10 * pageNo, 10);
+        recipeModel.model.getItems(callback, Message);
+    },
+
+    countAllRecipe: function(callback, Message){
+        var recipeModel = new RecipeModel();
+        recipeModel.model.getSize(callback, Message);
+    },
+
+    getRecipeByRecipeId: function(recipeIds, callback, Message){
 
         var where = {
-            "merchantId": {
-                "value": merchantId,
-                "condition": "="
-            }
-        };
-
-        if(employeeIds !== undefined)
-        {
-            where["id"] = {
-                "value": employeeIds.split(','),
+            "recipeId": {
+                "value": recipeIds,
                 "condition": "IN"
             }
-        }
-
-        var userExtended = new UserExtended([], where);
-
-        userExtended.model.getItems(callback, Message);
-
+        };
+        var recipeModel = new RecipeExtendedModel([], where);
+        recipeModel.model.getItems(callback, Message);
     }
+
 };
 
 

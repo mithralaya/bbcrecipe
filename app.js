@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var recipe = require('./routes/recipe');
+var MessageInstance = require('./Message/message');
 
 var app = express();
 
@@ -21,9 +23,19 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes.index);
-app.get('/login', users.login);
-app.get('/register', users.register);
+
+var start = function(req, res, next)
+{
+    req.messageInstance = new MessageInstance();
+    next();
+};
+
+
+app.get('/:pageNo'                          , start, routes.index);
+app.get('/'                                 , start, routes.index);
+app.get('/login'                            , start, users.login);
+app.get('/register'                         , start, users.register);
+app.get('/recipe/:recipeId/:recipeUrl'      , start, recipe.index);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
