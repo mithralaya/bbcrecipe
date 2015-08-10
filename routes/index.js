@@ -6,7 +6,7 @@ exports.index = function(req, res){
   var pageNo = 0;
   if(req.params.pageNo !== undefined)
   {
-    pageNo = req.params.pageNo - 1;
+    pageNo = req.params.pageNo - 1; // adjust pageno to multiply with 10.
   }
 
 
