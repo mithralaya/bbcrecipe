@@ -7,7 +7,7 @@
 
 /* Controllers */
 
-var baseUrl = "http://localhost:3000/";
+var baseUrl = "http://bbcrecipe.redi.io/";
 //initialise angular module
 var app = angular.module('bbcrecipeApp', []);
 var star = 0;
