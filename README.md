@@ -65,25 +65,25 @@ Few question popped in my mind when I was doing the project.
 1. Install NodeJS & NPM
 
  ```
- Check out - https://github.com/joyent/node/wiki/installing-node.js-via-package-manager
+ Check out & follow the instructions - https://github.com/joyent/node/wiki/installing-node.js-via-package-manager
  ```
 
 2. Install Grunt
 
  ```
- npm install -g grunt-cli
+ $npm install -g grunt-cli
  ```
 
 3. Install SASS
 
  ```
- gem install sass
+ $gem install sass
  ```
 
-4. Pull project from GIT
+4. Pull project from GIT to your desirable location.
 
  ```
- git clone https://github.com/mithralaya/bbcrecipe.git
+ $git clone https://github.com/mithralaya/bbcrecipe.git
  ```
 
 5. Run SQL script(sql_without_data.sql and sql_with_date.sql) which is attached with this project in to your local mysql db.
@@ -99,7 +99,7 @@ Few question popped in my mind when I was doing the project.
 8. Run your app from project root folder > bbcrecipe/ and visit http://localhost:3000
 
  ```
- npm start
+ $npm start
  ```
 
 
