@@ -86,7 +86,11 @@ exports.index = function(req, res, next)
             }
             else
             {
-                //this will reset to original list without any filter
+                //report error if no recipes found for the given filter combination
+                req.built.error = {
+                    "title": "No Recipe Found",
+                    "desc": "Sorry, nothing matched your filter term"
+                };
                 //sent it to Helper.fabricate
                 next();
             }
