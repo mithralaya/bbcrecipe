@@ -21,9 +21,13 @@ module.exports = function(grunt) {
             options: {
                 sourceMap: true
             },
-            build: {
+            global: {
                 src: "public/javascripts/global.js",
                 dest: "public/javascripts/global.min.js"
+            },
+            app: {
+                src: "public/javascripts/app.js",
+                dest: "public/javascripts/app.min.js"
             }
         },
 
@@ -35,7 +39,8 @@ module.exports = function(grunt) {
                 src: ['bower_components/jquery/dist/jquery.min.js'
                     , 'bower_components/bootstrap/dist/js/bootstrap.min.js'
                     , 'node_modules/angular/angular.min.js'
-                    , 'public/javascripts/global.min.js'],
+                    , 'public/javascripts/global.min.js'
+                    , 'public/javascripts/app.min.js'],
 
                 dest: 'public/javascripts/lib.js'
             },

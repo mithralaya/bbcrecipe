@@ -30,7 +30,8 @@ exports.index = function(req, res){
               selector: "home",
               totalRecipe: rows[0].TotalRows,
               recipeRows: recipeRows,
-              pageNo: pageNo
+              pageNo: pageNo,
+              user: req.session.user
             });
           }, req.messageInstance);
 
@@ -45,7 +46,8 @@ exports.index = function(req, res){
           selector: "home",
           totalRecipe: 1,
           recipeRows: recipeRows,
-          pageNo: pageNo
+          pageNo: pageNo,
+          user: req.session.user
         });
       }, req.messageInstance);
     }
@@ -55,7 +57,8 @@ exports.index = function(req, res){
       res.render('index', {
         title:  "BBC Recipe",
         selector: "home",
-        errors: req.messageInstance.get("error")
+        errors: req.messageInstance.get("error"),
+        user: req.session.user
       });
     }
 

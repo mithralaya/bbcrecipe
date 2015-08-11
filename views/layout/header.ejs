@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="ng-app" ng-app="bbcrecipeApp">
 <head>
     <meta name="viewport" content="width=320, user-scalable=yes, initial-scale=1.0">
     <meta name="robots" content="noindex">
@@ -23,6 +23,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="<%=(selector === "home") ? "active" : ''%>"><a href="/"><i class="ion-ios-home"></i> Home</a></li>
+                    <li class=""><a href="#"><i class="ion-person"></i> <%- user.name %></a></li>
                     <!--<li class="<%=(selector === "login") ? "active" : ''%>"><a href="/login"><i class="ion-key"></i> Login</a></li>
                     <li class="<%=(selector === "register") ? "active" : ''%>"><a href="/register"><i class="ion-ios-locked"></i> Register</a></li>-->
                 </ul>

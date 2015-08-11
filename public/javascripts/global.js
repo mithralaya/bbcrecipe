@@ -6,4 +6,7 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
     $('.dropdown-toggle').dropdown();
+    $('#starred').on('click', function () {
+        $('#starred').button('toggle');
+    });
 });
