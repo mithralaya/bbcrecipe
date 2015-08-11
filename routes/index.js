@@ -11,9 +11,12 @@ exports.index = function(req, res){
 
 
   recipe.countAllRecipe(function(rows){
+    //get total available recipes
     if(rows[0].TotalRows > 1)
     {
+
       recipe.getPaginatedRecipeIds(pageNo, function(recipeIds){
+        //get paginated result of recipes
         if(recipeIds.length > 0)
         {
           var returnedRecipeIds = [];
@@ -24,6 +27,7 @@ exports.index = function(req, res){
               returnedRecipeIds.push(recipeIds[recipeIndex].id);
             }
           }
+          //render webpage by picking index view
           recipe.getRecipeByRecipeId(returnedRecipeIds, function(recipeRows) {
             res.render('index', {
               title:  "BBC Recipe",
@@ -40,6 +44,7 @@ exports.index = function(req, res){
     }
     else if(rows[0].TotalRows == 1)
     {
+      // if there is only one recipe
       recipe.getAllRecipe(function(recipeRows) {
         res.render('index', {
           title: "BBC Recipe",
@@ -53,7 +58,8 @@ exports.index = function(req, res){
     }
     else
     {
-      req.messageInstance.add("error", "noRecipe");
+      //error if there are no recipe
+      req.messageInstance.add("error", "noRecipe");  //setting error message reffer Message.config.config
       res.render('index', {
         title:  "BBC Recipe",
         selector: "home",

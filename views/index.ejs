@@ -4,7 +4,7 @@
 
 
         <% if(totalRecipe > 0){ %>
-
+            <!-- Filter form html which includes filter textbox, cooking time select box, reset button and toggle starred btn -->
             <div class="row">
                 <form>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -44,6 +44,7 @@
                 </form>
             </div>
         <hr>
+            <!-- load from server for seo sake which is navigable -->
             <table class="table" id="preFilter">
                 <thead>
                     <tr>
@@ -53,7 +54,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%  var recipeIng = {};
+                    <%
+                        //first pick top 3 ingredients and store them on an object
+                        var recipeIng = {};
                         var i = 0;
                         for(var recipeRowId = 0 ; recipeRowId < recipeRows.length; recipeRowId++){
                             if(recipeRows.hasOwnProperty(recipeRowId) && recipeRows[recipeRowId].recipeId !== null) {
@@ -69,6 +72,7 @@
                                 }
                             }
                         }
+                        // populate every recipe using already stored recipe main ingredients
                         var recipe = {};
                         for(var recipeRowId in recipeRows){
                             if(recipeRows.hasOwnProperty(recipeRowId)) {
@@ -86,6 +90,7 @@
                         } %>
                 </tbody>
             </table>
+        <!-- This table is hidden first.. fires up when the filters are being used -->
         <table class="table" id="postFilter" style="display:none;">
             <thead>
                 <tr>
@@ -107,6 +112,7 @@
             var pageNumber = pageNo + 1; //readjust back to the actual page number
             if(totalPage > 1){
           %>
+        <!-- page navs -->
         <nav>
             <ul class="pagination">
                 <li class="<%- pageNumber === 1? 'disabled': ''%>">

@@ -12,10 +12,12 @@ exports.index = function(req, res, next)
     var starObject = {};
     req.built.star = {};
 
+    //only if star is set otherwise no action is taken return empty result
     if(star !== undefined && recipeId !== undefined)
     {
         if(star == -1)
         {
+            //if unstarred set the deleteDate to make soft delete.
             starObject = {
                 "0": {
                     "userId": req.session.user.id,
@@ -26,6 +28,7 @@ exports.index = function(req, res, next)
         }
         if(star == 1)
         {
+            //set deleteDate to null to restar the recipe
             starObject = {
                 "0": {
                     "userId": req.session.user.id,
@@ -36,9 +39,15 @@ exports.index = function(req, res, next)
             }
         }
 
+        //store the object
         recipe.storeStarred(starObject, function(returned){
+            //send it to Helper.fabricate so it sends as JSON
             req.built.star.success = returned;
             next();
         }, req.messageInstance);
+    }
+    else
+    {
+        next();
     }
 };

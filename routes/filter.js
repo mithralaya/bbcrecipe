@@ -13,6 +13,7 @@ exports.index = function(req, res, next)
     req.built.recipe = [];
     var recipeIds = [];
 
+    //filtered of starred and with everything else
     if(starOnly == 1) {
         recipe.getStaredByUserIdOnly(req.session.user.id, function(starRows){
 
@@ -30,6 +31,7 @@ exports.index = function(req, res, next)
                         if (rows.length > 0) {
                             var recipeIng = {};
                             var i = 0;
+                            //first make 3 main comma separated ingredients
                             for (var rowId in rows) {
                                 if (rows.hasOwnProperty(rowId)) {
                                     if (recipeIng[rows[rowId].recipeId] === undefined) {
@@ -44,6 +46,7 @@ exports.index = function(req, res, next)
                                     }
                                 }
                             }
+                            //then attach ingredients to the rest of the recipe information and fabricate json using req.built
                             var recipex = {};
                             for (var rowId in rows) {
                                 if (rows.hasOwnProperty(rowId)) {
@@ -61,36 +64,46 @@ exports.index = function(req, res, next)
 
                                 }
                             }
+                            //sent it to Helper.fabricate
                             next();
                         }
                         else {
+                            //report error if no recipes found for the given filter combination
                             req.built.error = {
                                 "title": "No Recipe Found",
                                 "desc": "Sorry, nothing matched your filter term"
                             };
+                            //sent it to Helper.fabricate
                             next();
                         }
                     }
                     else {
+                        //this will reset to original list without any filter
+                        //sent it to Helper.fabricate
                         next();
                     }
                 }, req.messageInstance);
             }
             else
             {
-
+                //this will reset to original list without any filter
+                //sent it to Helper.fabricate
+                next();
             }
 
         }, req.messageInstance);
 
     }
+    //filtered everything else but starred
     else
     {
+        //recipes with filtered result
         recipe.getRecipesWithFilter(query, cookingTime, recipeIds, function (rows) {
             if (rows !== null) {
                 if (rows.length > 0) {
                     var recipeIng = {};
                     var i = 0;
+                    //first make 3 main comma separated ingredients
                     for (var rowId in rows) {
                         if (rows.hasOwnProperty(rowId)) {
                             if (recipeIng[rows[rowId].recipeId] === undefined) {
@@ -105,6 +118,7 @@ exports.index = function(req, res, next)
                             }
                         }
                     }
+                    //then attach ingredients to the rest of the recipe information and fabricate json using req.built
                     var recipex = {};
                     for (var rowId in rows) {
                         if (rows.hasOwnProperty(rowId)) {
@@ -122,17 +136,22 @@ exports.index = function(req, res, next)
 
                         }
                     }
+                    //sent it to Helper.fabricate
                     next();
                 }
                 else {
+                    //report error if no recipes found for the given filter combination
                     req.built.error = {
                         "title": "No Recipe Found",
                         "desc": "Sorry, nothing matched your filter term"
                     };
+                    //sent it to Helper.fabricate
                     next();
                 }
             }
             else {
+                //this will reset to original list without any filter
+                //sent it to Helper.fabricate
                 next();
             }
         }, req.messageInstance);

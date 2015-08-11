@@ -8,19 +8,25 @@
 /* Controllers */
 
 var baseUrl = "http://localhost:3000/";
+//initialise angular module
 var app = angular.module('bbcrecipeApp', []);
 var star = 0;
 var toggleStar = 0;
+
+//create recipe controller and inject scope and http
 app.controller('RecipeController', ['$scope', '$http', function(scope, http) {
 
     scope.filter = {};
     scope.error = {};
     scope.recipies = {};
+    //fired is any changes on the filter form
     scope.filterRecipe = function ()
     {
+        //hide all unwanted html from page
         $("#postFilter").hide();
         $("#apiError").hide();
         $("#preFilter").hide();
+        //atleast one shoule not be empty to make ajax request
         if((scope.filter.q !== undefined && scope.filter.q.length > 0)
             || (scope.filter.cookingTime !== undefined && scope.filter.cookingTime.length > 0)
             || toggleStar != 0) {
@@ -29,15 +35,18 @@ app.controller('RecipeController', ['$scope', '$http', function(scope, http) {
             $(".pagination").hide();
             $(".preloader").show();
             $("#apiError").hide();
+            //make ajax request to /filter by supplying cooking time, query and starred true or false
             http({url: baseUrl + "filter", method: 'GET', params: scope.filter}).success(function (response) {
                 $(".preloader").hide();
                 $("#postFilter").show();
                 if(response.recipe.length > 0)
                 {
+                    //set recipies scope to populate on postFilter table
                     scope.recipies = response.recipe;
                 }
                 else if(response.recipe.length == 0 && response.error !== undefined)
                 {
+                    //error display
                     $("#postFilter").hide();
                     $("#preFilter").hide();
                     scope.recipies = {};
@@ -53,6 +62,7 @@ app.controller('RecipeController', ['$scope', '$http', function(scope, http) {
         }
         else
         {
+            //reset to normal state or no filter state
             $("#postFilter").hide();
             $("#preFilter").show();
             $(".preloader").hide();
@@ -76,6 +86,7 @@ app.controller('RecipeController', ['$scope', '$http', function(scope, http) {
     },
     scope.toggleStarfn = function()
     {
+        //first toggling star will thigger this function before it request for filter recipe function
         if(toggleStar == 0)
         {
             toggleStar = 1;
@@ -93,6 +104,7 @@ app.controller('RecipeController', ['$scope', '$http', function(scope, http) {
 
 app.controller('StarController', ['$scope', '$http', function(scope, http) {
 
+    //star and unstar function.
     scope.star = function (flag, recipeId)
     {
         var params = {};
@@ -114,6 +126,7 @@ app.controller('StarController', ['$scope', '$http', function(scope, http) {
         }
 
         params.recipeId = recipeId;
+        //make ajax request to /starred
         http({url: baseUrl + "starred", method: 'GET', params: params}).success(function (response) {
             if(response)
             {

@@ -9,14 +9,18 @@ exports.index = function(req, res, next)
     var star = false;
     if(recipeId !== undefined)
     {
+        //find recipe by given id
         recipe.getRecipeByRecipeId([recipeId], function(recipeRow) {
             if(recipeRow.length > 0)
             {
+                //check if the given recipe is starred by the current user
                 recipe.getStaredByUserId(req.session.user.id, recipeId, function(starRows){
                     if(starRows.length > 0)
                     {
+                        //if yes set true
                         star = true;
                     }
+                    //render recipe page by sending all required params
                     res.render('recipe', {
                         title:  "BBC Recipe",
                         selector: "",
@@ -30,6 +34,7 @@ exports.index = function(req, res, next)
             }
             else
             {
+                //error if the recipe cannot be found.
                 req.messageInstance.add("error", "noSuchRecipe");
                 res.render('recipe', {
                     title:  "BBC Recipe",
@@ -45,6 +50,7 @@ exports.index = function(req, res, next)
     }
     else
     {
+        //send error as the recipe cannot be found without the recipeId
         req.messageInstance.add("error", "noSuchRecipe");
         res.render('recipe', {
             title:  "BBC Recipe",
