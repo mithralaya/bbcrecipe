@@ -60,6 +60,8 @@ Few question popped in my mind when I was doing the project.
 
  * Test cases should be written
 
+ * memory cache it to improve speed. Also can use nosql dbs to improve performance.
+
 ##How to install on your local machine
 
 1. Install NodeJS & NPM
