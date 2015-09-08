@@ -53,17 +53,6 @@ module.exports = function(grunt) {
                 dest: 'public/stylesheets/lib.css'
             }
         },
-
-        jasmine: {
-            helper: {
-                src: 'test/*.js',
-                options: {
-                    specs: 'spec/**/*[sS]pec.js',
-                    helpers: 'spec/helpers/**/*.js',
-                    template: require('grunt-template-jasmine-istanbul')
-                }
-            }
-        },
         jasmine_nodejs: {
             // task specific (default) options
             options: {
