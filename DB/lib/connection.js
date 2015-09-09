@@ -38,8 +38,8 @@ var _connectionSelect = _mysql.createPool({
     database            : _config.mySQLDB.select.dbName,
     supportBigNumbers   : true,
     connectTimeout      : 7000,
-    connectionLimit     : 5,
-    queueLimit          : 5
+    connectionLimit     : 20,
+    queueLimit          : 20
 });
 
 

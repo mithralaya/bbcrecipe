@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             // task specific (default) options
             options: {
                 specNameSuffix: "spec.js", // also accepts an array
-                helperNameSuffix: "helper.js",
+                helperNameSuffix: ["filter.js", "recipe.js", "starred.js", "helper.js"],
                 useHelpers: false,
                 stopOnFailure: false,
                 // configure one or more built-in reporters
